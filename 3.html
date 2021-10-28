@@ -8,42 +8,49 @@
 예를 들면 utf-8 같은게 있겠다.
 </p>
 <script>
-  function LinksSetColor(color)
-  {
-    var alist = document.querySelectorAll('a');
-    var i = 0;
-    while(i < alist.length)
+  // 객체화
+  // 그 동안 만든 함수들을 객체에 프로퍼티로 만든다.
+  var Links = {
+    setColor:function(color)
     {
-      alist[i].style.color = color;
-      i = i+1;
+      // querySelector 는 document라는 메인 객체에 존재하는 메서드라 볼 수 있겠다.
+      var alist = document.querySelectorAll('a');
+      var i = 0;
+      while(i < alist.length)
+      {
+        alist[i].style.color = color;
+        i = i+1;
+      }
     }
   }
-  function BodySetColor(color)
-  {
-    document.querySelector('body').style.color= color;
-  }
-  function BodySetBackgroundColor(color)
-  {
-    document.querySelector('body').style.backgroundColor=color;
+  var Body = {
+    setColor:function(color)
+    {
+      document.querySelector('body').style.color= color;
+    }, // 프로퍼티 사이에  ,  표시는 필수
+    setBackgroundColor:function(color)
+    {
+      document.querySelector('body').style.backgroundColor=color;
+    }
   }
   function nightDayHanlder(self)
   {
       var target = document.querySelector('body');
       if(self.value === 'night')
       {
-          BodySetBackgroundColor(black);
-          BodySetColor(white);
+          Body.setBackgroundColor('black');
+          Body.setColor('white');
           self.value = 'day';
 
-          LinksSetColor(powderblue);
+          Links.setColor(powderblue);
       }
       else
       {
-          BodySetBackgroundColor(white);
-          BodySetColor(black);
+          Body.setBackgroundColor('white');
+          Body.setColor('black');
           self.value = 'night';
 
-          LinksSetColor(blue);
+          Links.setColor(blue);
       }
   }
   </script>
@@ -51,34 +58,8 @@
 <body>
 <h1><a href="index.html">WEB</a></h1>
 <input id="night_day" type="button" value="night" onclick="
-if(document.querySelector('#night_day').value === 'night')
-{
-  document.querySelector('body').style.backgroundColor='black';
-  document.querySelector('body').style.color='white';
-  document.querySelector('#night_day').value = 'day';
-
-  var alist = document.querySelectorAll('a');
-  var i = 0;
-  while(i < alist.length)
-  {
-    alist[i].style.color = 'powderblue';
-    i = i + 1;
-  }
-}
-else
-{
-  document.querySelector('body').style.backgroundColor='white';
-  document.querySelector('body').style.color='black';
-  document.querySelector('#night_day').value = 'night';
-
-  var alist = document.querySelectorAll('a');
-  var i = 0;
-  while(i < alist.length)
-  {
-    alist[i].style.color = 'blue';
-    i = i + 1;
-  }
-}">
+  nightDayHanlder(this);
+">
 <ol>
   <li><a href="1.html">HTML</a></li>
     <li><a href="2.html">CSS</a></li>
