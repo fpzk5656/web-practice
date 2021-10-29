@@ -4,23 +4,27 @@ var Links = {
   setColor:function(color)
   {
     // querySelector 는 document라는 메인 객체에 존재하는 메서드라 볼 수 있겠다.
-    var alist = document.querySelectorAll('a');
-    var i = 0;
-    while(i < alist.length)
-    {
-      alist[i].style.color = color;
-      i = i+1;
-    }
+    // var alist = document.querySelectorAll('a');
+    // var i = 0;
+    // while(i < alist.length)
+    // {
+    //   alist[i].style.color = color;
+    //   i = i+1;
+    // }
+
+    $('a').css('color',color);
   }
 }
 var Body = {
   setColor:function(color)
   {
-    document.querySelector('body').style.color= color;
+    //document.querySelector('body').style.color= color;
+    $('body').css('color',color);
   }, // 프로퍼티 사이에  ,  표시는 필수
   setBackgroundColor:function(color)
   {
-    document.querySelector('body').style.backgroundColor=color;
+    //document.querySelector('body').style.backgroundColor=color;
+    $('body').css('backgroundColor',color);
   }
 }
 function nightDayHanlder(self)
